@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Box } from "@mui/material"
+import AppBar from "./components/AppBar";
+import Dialog from "./components/Dialog";
+import { app } from './styles';
 
-function App() {
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      <AppBar handleClickOpen={handleClickOpen}/>
+      <Box sx={{ padding: "80px 40px", textAlign: 'center'}}>
+        <span style={app.context}>
+          Please connect on BSC or Polygon to continue
+        </span>
+      </Box>
+      <Dialog handleClose={handleClose} open={open}/>
+    </Box>
   );
-}
-
+};
 export default App;
